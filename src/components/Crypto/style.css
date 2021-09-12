@@ -1,0 +1,16 @@
+.coin-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: hsl(210, 86%, 74%);
+  transition: 150ms ease-in;
+  margin-right: 0.5rem;
+}
+
+.coin {
+  margin-right: 1rem;
+}
+
+.coin-wrapper {
+  display: flex;
+  align-items: center;
+}

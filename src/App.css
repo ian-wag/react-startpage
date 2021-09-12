@@ -18,6 +18,11 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg);
+  color: var(--primary-color);
+  font-family: var(--font);
 }
 
 h1,
