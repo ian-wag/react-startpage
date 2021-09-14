@@ -31,21 +31,13 @@ const App = () => {
     )
       .then((res) => res.json())
       .then((data) => data);
-    if (!apiWeatherData) {
-      setWeatherData({
-        temp: "",
-        location: "",
-        description: "",
-        error: "ERROR FETCHING CURRENT WEATHER",
-      });
-    } else {
-      setWeatherData({
-        temp: Math.round((apiWeatherData.main.temp * 9) / 5 + 32) + "°F",
-        location: apiWeatherData.name,
-        description: apiWeatherData.weather[0].description,
-        error: "",
-      });
-    }
+
+    setWeatherData({
+      temp: Math.round((apiWeatherData.main.temp * 9) / 5 + 32) + "°F",
+      location: apiWeatherData.name,
+      description: apiWeatherData.weather[0].description,
+      error: "",
+    });
   };
 
   const time = () => {
@@ -84,6 +76,7 @@ const App = () => {
   useEffect(() => {
     fetchCoinData();
     fetchWeatherData();
+    time();
     setInterval(() => time(), 1000);
   }, []);
 
