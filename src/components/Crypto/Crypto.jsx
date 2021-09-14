@@ -2,7 +2,7 @@ import "./style.css";
 
 const Crypto = ({ bitcoin, ethereum, dogecoin }) => {
   return (
-    <div>
+    <div className="coins">
       <div className="coin-wrapper">
         <svg
           className="coin-img"

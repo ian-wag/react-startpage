@@ -2,7 +2,6 @@
   width: 1.5rem;
   height: 1.5rem;
   fill: hsl(210, 86%, 74%);
-  transition: 150ms ease-in;
   margin-right: 0.5rem;
 }
 
@@ -13,4 +12,8 @@
 .coin-wrapper {
   display: flex;
   align-items: center;
+}
+
+.coins {
+  margin-bottom: 2rem;
 }

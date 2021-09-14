@@ -1,0 +1,11 @@
+.link {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: hsl(210, 86%, 74%);
+  transition: 150ms ease-in;
+  margin-right: 2rem;
+}
+
+.link:hover {
+  fill: hsl(210, 66%, 54%);
+}

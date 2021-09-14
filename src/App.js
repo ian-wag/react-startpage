@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Crypto, Greeting, Clock, Weather } from "./components";
+import { Crypto, Greeting, Clock, Weather, Links } from "./components";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
@@ -16,7 +16,7 @@ const App = () => {
     setCoinData({
       data: apiCoinData,
       bitcoin: apiCoinData.bitcoin.usd,
-      ethereum: apiCoinData.ethereum.usd,
+      ethereum: Math.round(apiCoinData.ethereum.usd),
       dogecoin: apiCoinData.dogecoin.usd,
       error: "",
     });
@@ -98,6 +98,7 @@ const App = () => {
         location={weatherData.location}
         description={weatherData.description}
       />
+      <Links />
     </div>
   );
 };
