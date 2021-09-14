@@ -5,6 +5,7 @@ import { Crypto, Greeting, Clock, Weather } from "./components";
 const App = () => {
   const [coinData, setCoinData] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
+  const [currentTime, setCurrentTime] = useState([]);
 
   const fetchCoinData = async () => {
     const apiCoinData = await fetch(
@@ -39,7 +40,7 @@ const App = () => {
       });
     } else {
       setWeatherData({
-        temp: Math.round((apiWeatherData.main.temp * 9) / 5 + 32),
+        temp: Math.round((apiWeatherData.main.temp * 9) / 5 + 32) + "°F",
         location: apiWeatherData.name,
         description: apiWeatherData.weather[0].description,
         error: "",
@@ -47,20 +48,58 @@ const App = () => {
     }
   };
 
+  const time = () => {
+    let date = new Date();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let period = "am";
+
+    if (hour === 0) {
+      hour = 12;
+    }
+
+    if (hour === 12) {
+      period = "pm";
+    }
+
+    if (hour > 12) {
+      hour = hour - 12;
+      period = "pm";
+    }
+
+    if (hour < 10) {
+      hour = "0" + hour;
+    } else {
+      hour = hour + 0;
+    }
+
+    if (minute < 10) {
+      minute = "0" + minute;
+    } else {
+      minute = minute + 0;
+    }
+    setCurrentTime({ hour, minute, period });
+  };
+
   useEffect(() => {
     fetchCoinData();
     fetchWeatherData();
+    setInterval(() => time(), 1000);
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <Crypto
         bitcoin={coinData.bitcoin}
         ethereum={coinData.ethereum}
         dogecoin={coinData.dogecoin}
       />
       <Greeting />
-      <Clock />
+      <Clock
+        hour={currentTime.hour}
+        minute={currentTime.minute}
+        period={currentTime.period}
+      />
       <Weather
         temp={weatherData.temp}
         location={weatherData.location}

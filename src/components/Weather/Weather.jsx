@@ -6,7 +6,7 @@ const Weather = ({ temp, location, description, error }) => {
       <div className="weather-container">
         <div className="location">{location}</div>
         <div className="condition">{description}</div>
-        <div className="fahrenheit">{temp}&deg;F</div>
+        <div className="fahrenheit">{temp}</div>
         <div className="error">{error}</div>
       </div>
     </>
