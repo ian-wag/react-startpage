@@ -1,27 +1,6 @@
-import { useEffect } from "react";
 import "./style.css";
 
-const Crypto = () => {
-  const fetchData = () => {
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdogecoin&vs_currencies=usd`;
-    fetch(url)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        const bitcoin = data.bitcoin.usd;
-        const ethereum = Math.round(data.ethereum.usd);
-        const dogecoin = data.dogecoin.usd;
-        document.querySelector(".bitcoin").textContent = ` $${bitcoin}`;
-        document.querySelector(".ethereum").textContent = ` $${ethereum}`;
-        document.querySelector(".dogecoin").textContent = ` $${dogecoin}`;
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const Crypto = ({ bitcoin, ethereum, dogecoin }) => {
   return (
     <div>
       <div className="coin-wrapper">
@@ -44,7 +23,7 @@ const Crypto = () => {
                     3.137.524 2.75 2.084v.006z"
           />
         </svg>
-        <p className="bitcoin coin"></p>
+        <p className="bitcoin coin">{bitcoin}</p>
       </div>
       <div className="coin-wrapper">
         <svg
@@ -59,7 +38,7 @@ const Crypto = () => {
                     0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"
           />
         </svg>
-        <p className="ethereum coin"></p>
+        <p className="ethereum coin">{ethereum}</p>
       </div>
       <div className="coin-wrapper">
         <svg
@@ -77,7 +56,7 @@ const Crypto = () => {
                     6.727-.183 6.727 6.594-.001 6.888-6.111 6.376-6.111 6.376z"
           />
         </svg>
-        <p className="dogecoin coin"></p>
+        <p className="dogecoin coin">{dogecoin}</p>
       </div>
     </div>
   );
