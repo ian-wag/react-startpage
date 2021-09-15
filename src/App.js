@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { Crypto, Greeting, Clock, Weather, Links } from "./components";
+import { Crypto, Greeting, Clock, Weather, Links, Loading } from "./components";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
@@ -10,23 +10,24 @@ const App = () => {
   const [coinLoading, setCoinLoading] = useState(false);
   const [weatherLoading, setWeatherLoading] = useState(false);
 
-  const fetchCoinData = async () => {
-    setCoinLoading(true);
-    const apiCoinData = await fetch(
-      `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdogecoin&vs_currencies=usd`
-    )
-      .then((res) => res.json())
-      .then((data) => data);
-
-    setCoinData({
-      data: apiCoinData,
-      bitcoin: apiCoinData.bitcoin.usd,
-      ethereum: Math.round(apiCoinData.ethereum.usd),
-      dogecoin: apiCoinData.dogecoin.usd,
-      error: "",
-    });
-    setCoinLoading(false);
-  };
+  useEffect(() => {
+    const fetchCoinData = async () => {
+      setCoinLoading(true);
+      const apiCoinData = await fetch(
+        `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum%2Cdogecoin&vs_currencies=usd`
+      );
+      const data = await apiCoinData.json();
+      setCoinData({
+        data,
+        bitcoin: data.bitcoin.usd,
+        ethereum: Math.round(data.ethereum.usd),
+        dogecoin: data.dogecoin.usd,
+        error: "",
+      });
+      setCoinLoading(false);
+    };
+    fetchCoinData();
+  }, []);
 
   const greet = () => {
     let date = new Date();
@@ -42,25 +43,26 @@ const App = () => {
     }
   };
 
-  const fetchWeatherData = async () => {
-    const api = process.env.REACT_APP_WEATHER_API_KEY;
-    let long = "-87.6803";
-    let lat = "41.9227";
-    setWeatherLoading(true);
-    const apiWeatherData = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`
-    )
-      .then((res) => res.json())
-      .then((data) => data);
-
-    setWeatherData({
-      temp: Math.round((apiWeatherData.main.temp * 9) / 5 + 32) + "°F",
-      location: apiWeatherData.name,
-      description: apiWeatherData.weather[0].description,
-      error: "",
-    });
-    setWeatherLoading(false);
-  };
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      const api = process.env.REACT_APP_WEATHER_API_KEY;
+      let long = "-87.6803";
+      let lat = "41.9227";
+      setWeatherLoading(true);
+      const apiWeatherData = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`
+      );
+      const data = await apiWeatherData.json();
+      setWeatherData({
+        temp: Math.round((data.main.temp * 9) / 5 + 32) + "°F",
+        location: data.name,
+        description: data.weather[0].description,
+        error: "",
+      });
+      setWeatherLoading(false);
+    };
+    fetchWeatherData();
+  }, []);
 
   const time = () => {
     let date = new Date();
@@ -97,16 +99,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchCoinData();
     greet();
-    fetchWeatherData();
     time();
     setInterval(() => time(), 1000);
   }, []);
-  if (coinLoading === true && weatherLoading === true) {
-    return <div className="loading"></div>;
-  } else {
-    return (
+  return (
+    <div>
+      <Loading coinLoad={coinLoading} weatherLoad={weatherLoading} />
       <div className="container">
         <Crypto
           bitcoin={coinData.bitcoin}
@@ -126,8 +125,8 @@ const App = () => {
         />
         <Links />
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default App;
