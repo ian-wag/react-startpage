@@ -1,1 +1,1 @@
-# A new tab page for web browsers.
+# My Personal New Tab Page.
