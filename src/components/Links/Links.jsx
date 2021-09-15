@@ -4,10 +4,11 @@ import "./style.css";
 const Links = () => {
   return (
     <>
-      <div class="links">
+      <div className="links">
         <a href="https://www.reddit.com/">
+          <p className="link-text strike">reddit.</p>
           <svg
-            class="link"
+            className="link"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -37,8 +38,9 @@ const Links = () => {
           </svg>
         </a>
         <a href="https://www.twitch.tv/directory/following">
+          <p className="link-text strike">twitch.</p>
           <svg
-            class="link"
+            className="link"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +54,9 @@ const Links = () => {
           </svg>
         </a>
         <a href="https://twitter.com/home">
+          <p className="link-text strike">twitter.</p>
           <svg
-            class="link"
+            className="link"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -73,8 +76,9 @@ const Links = () => {
           </svg>
         </a>
         <a href="https://github.com/ian-wag">
+          <p className="link-text strike">github.</p>
           <svg
-            class="link"
+            className="link"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

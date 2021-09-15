@@ -4,8 +4,32 @@
   fill: hsl(210, 86%, 74%);
   transition: 150ms ease-in;
   margin-right: 2rem;
+  display: none;
 }
 
 .link:hover {
   fill: hsl(210, 66%, 54%);
+}
+
+.links {
+  display: flex;
+}
+
+.link-text {
+  color: hsl(210, 86%, 74%);
+  margin-right: 2rem;
+  font-size: 1.4rem;
+}
+
+.strike {
+  position: relative;
+  display: inline-block;
+}
+.strike:hover::before {
+  content: "";
+  border-bottom: 4px solid hsl(210, 86%, 74%);
+  width: 95%;
+  position: absolute;
+  right: 5%;
+  top: 110%;
 }
