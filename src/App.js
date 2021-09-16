@@ -16,9 +16,9 @@ const App = () => {
       const data = await apiCoinData.json();
       setCoinData({
         data,
-        bitcoin: data.bitcoin.usd,
-        ethereum: Math.round(data.ethereum.usd),
-        dogecoin: data.dogecoin.usd,
+        bitcoin: data.bitcoin.usd.toLocaleString(),
+        ethereum: Math.round(data.ethereum.usd).toLocaleString(),
+        dogecoin: data.dogecoin.usd.toFixed(4),
       });
     };
     fetchCoinData();
