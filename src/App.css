@@ -42,7 +42,8 @@ a:active {
   margin: 2rem 5rem 5rem 5rem;
 }
 
-.loading {
-  min-height: 100vh;
-  background-color: var(--bg);
+@media (max-width: 39em) {
+  .container {
+    margin: 1rem;
+  }
 }

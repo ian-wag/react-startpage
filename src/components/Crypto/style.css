@@ -18,3 +18,10 @@
   margin-bottom: 8rem;
   min-height: 7.875rem;
 }
+
+@media (max-width: 39em) {
+  .coins {
+    margin-bottom: 4rem;
+    min-height: 4.875rem;
+  }
+}

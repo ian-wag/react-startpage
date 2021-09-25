@@ -20,3 +20,14 @@
   right: 5%;
   top: 110%;
 }
+
+@media (max-width: 39em) {
+  .links {
+    flex-direction: column;
+  }
+
+  .link-text {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+}
